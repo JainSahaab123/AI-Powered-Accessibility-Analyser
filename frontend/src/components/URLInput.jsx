@@ -46,7 +46,7 @@ function URLInput({ setReport, setLoading, setError, setProgress, setProgressLab
       runSteps()
 
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}api/analyse`,
+        `${import.meta.env.VITE_API_URL}/api/analyse`,
         { url }
       )
 

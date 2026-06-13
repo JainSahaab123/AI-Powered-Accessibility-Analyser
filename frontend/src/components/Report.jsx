@@ -18,7 +18,7 @@ function Report({ report }) {
   const [hasMore, setHasMore] = useState(
     (report.violations?.length || 0) < (report.totalViolations || 0)
   )
-  const [remaining, setRemaining] = useState(
+  const [ setRemaining] = useState(
     (report.totalViolations || 0) - (report.violations?.length || 0)
   )
 

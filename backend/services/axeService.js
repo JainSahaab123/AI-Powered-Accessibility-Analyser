@@ -57,18 +57,19 @@ export const scanWebsite = async (url) => {
 
     const isProduction = process.env.NODE_ENV === 'production'
 
-    if (isProduction) {
-      browser = await puppeteerCore.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
-      })
-    } else {
-      browser = await puppeteer.launch({
-        headless: true,
-      })
-    }
+    browser = await puppeteer.launch(
+      isProduction
+        ? {
+          args: chromium.args,
+          defaultViewport: chromium.defaultViewport,
+          executablePath: await chromium.executablePath(),
+          headless: chromium.headless,
+        }
+        : {
+          executablePath: await getExecutablePath(),
+          headless: true,
+        }
+    )
 
     const page = await browser.newPage()
 
