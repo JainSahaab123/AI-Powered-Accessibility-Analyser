@@ -4,16 +4,16 @@ import axios from 'axios'
 
 const impactColors = {
   critical: { bg: '#ff444411', border: '#ff444444', text: '#ff4444' },
-  serious:  { bg: '#ff880011', border: '#ff880044', text: '#ff8800' },
+  serious: { bg: '#ff880011', border: '#ff880044', text: '#ff8800' },
   moderate: { bg: '#ffcc0011', border: '#ffcc0044', text: '#ffcc00' },
-  minor:    { bg: '#4488ff11', border: '#4488ff44', text: '#4488ff' },
+  minor: { bg: '#4488ff11', border: '#4488ff44', text: '#4488ff' },
 }
 
 const impactIcons = {
   critical: '🔴',
-  serious:  '🟠',
+  serious: '🟠',
   moderate: '🟡',
-  minor:    '🔵',
+  minor: '🔵',
 }
 
 function Violation({ violation, index }) {
@@ -34,15 +34,16 @@ function Violation({ violation, index }) {
 
     setChatLoading(true)
     try {
+      // Fix - use env variable
       const response = await axios.post(
-        'http://localhost:5000/api/analyse/explain',
+        `${import.meta.env.VITE_API_URL}api/analyse/explain`,
         { violation, messages: [] }
       )
       setMessages([{ role: 'ai', content: response.data.message }])
     } catch {
-      setMessages([{ 
-        role: 'ai', 
-        content: 'Could not load explanation. Please try again.' 
+      setMessages([{
+        role: 'ai',
+        content: 'Could not load explanation. Please try again.'
       }])
     } finally {
       setChatLoading(false)
@@ -60,7 +61,7 @@ function Violation({ violation, index }) {
 
     try {
       const response = await axios.post(
-`${import.meta.env.VITE_API_URL}/api/analyse/explain`,
+        `${import.meta.env.VITE_API_URL}api/analyse/explain`,
         { violation, messages: updatedMessages }
       )
       setMessages([
@@ -307,11 +308,11 @@ function Violation({ violation, index }) {
                       </div>
                     )}
                     <div style={{
-                      background: msg.role === 'user' 
-                        ? 'var(--green-dim)' 
+                      background: msg.role === 'user'
+                        ? 'var(--green-dim)'
                         : 'var(--bg2)',
-                      border: `1px solid ${msg.role === 'user' 
-                        ? 'var(--green)' 
+                      border: `1px solid ${msg.role === 'user'
+                        ? 'var(--green)'
                         : 'var(--border)'}`,
                       borderRadius: msg.role === 'user'
                         ? '12px 12px 0 12px'
@@ -421,7 +422,7 @@ function Violation({ violation, index }) {
                     fontFamily: 'Space Mono, monospace',
                     fontSize: '12px',
                     fontWeight: '700',
-                    cursor: chatLoading || !input.trim() 
+                    cursor: chatLoading || !input.trim()
                       ? 'not-allowed' : 'pointer',
                     opacity: chatLoading || !input.trim() ? 0.5 : 1,
                     transition: 'opacity 0.2s'

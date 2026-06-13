@@ -214,7 +214,11 @@ function URLInput({ setReport, setLoading, setError, setProgress, setProgressLab
           'chess.com',
           'zomato.com',
           'amazon.in',
-          'flipkart.com',
+          'flipkart.in',
+          'instagram.com',
+          'linkedin.com',
+          'youtube.com',
+          'twitter.com',
           'My Site',
         ].map(site => (
           <button
