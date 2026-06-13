@@ -1,4 +1,4 @@
-# ♿ Accessibility Analyser
+# ♿ AI Accessibility Analyser
 
 > AI-powered WCAG compliance scanner that finds accessibility violations on any website and generates exact code fixes — so developers don't just know what's broken, they know how to fix it.
 
@@ -196,15 +196,18 @@ accessibility-analyser/
 
 ### Home Page
 
-Add screenshot here.
+<img width="1892" height="876" alt="image" src="https://github.com/user-attachments/assets/6ed0c279-0e99-4b1e-9d68-f880428988e6" />
+
 
 ### Scan Results
 
-Add screenshot here.
+<img width="1891" height="880" alt="image" src="https://github.com/user-attachments/assets/2f4893e0-45ab-4774-9615-28bca0850679" />
+
 
 ### AI Fix Suggestions
 
-Add screenshot here.
+<img width="1889" height="885" alt="image" src="https://github.com/user-attachments/assets/ffd7c89d-b665-42d6-b2dc-c3ca9e4b6623" />
+
 
 ---
 
