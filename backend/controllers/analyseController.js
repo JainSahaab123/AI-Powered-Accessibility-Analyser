@@ -65,8 +65,7 @@ export const analyseWebsite = async (req, res) => {
         }
 
         // Easter egg
-        if (formattedURL.includes('parasagarwal.com') ||
-            formattedURL.includes('paras.dev')) {
+        if (formattedURL.includes('https://ai-powered-accessibility-analyser.vercel.app/')) {
             return res.status(400).json({
                 error: "Coaches don't play 😉"
             })

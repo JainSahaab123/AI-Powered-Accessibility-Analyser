@@ -214,17 +214,12 @@ function URLInput({ setReport, setLoading, setError, setProgress, setProgressLab
           'chess.com',
           'zomato.com',
           'amazon.in',
-          'twitter.com',
-          'github.com',
-          'netflix.com',
-          'linkedin.com',
           'flipkart.com',
-          'spotify.com',
-          'airbnb.com',
+          'My Site',
         ].map(site => (
           <button
             key={site}
-            onClick={() => setUrl(site)}
+            onClick={() => setUrl(site === 'My Site' ? 'ai-accessibility-analyser.vercel.app' : site)}
             style={{
               background: 'transparent',
               border: '1px solid var(--border)',

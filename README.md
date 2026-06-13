@@ -2,103 +2,101 @@
 
 > AI-powered WCAG compliance scanner that finds accessibility violations on any website and generates exact code fixes — so developers don't just know what's broken, they know how to fix it.
 
-![License](https://img.shields.io/badge/license-MIT-green)
-![Node](https://img.shields.io/badge/node-v22-brightgreen)
-![React](https://img.shields.io/badge/react-vite-blue)
-![AI](https://img.shields.io/badge/AI-Groq%20Llama%203.3-orange)
-
 ---
 
 ## The Problem
 
-Over **1.3 billion people** globally live with some form of disability. Most websites are built by developers who never consider how a blind person, a colorblind person, or someone who can't use a mouse would experience their product.
+Over **1.3 billion people** globally live with some form of disability. Most websites are built by developers who never consider how a blind person, a color-blind person, or someone who can't use a mouse would experience their product.
 
-Tools like Axe-core can detect accessibility problems — but they only tell you **what** is broken, not **how** to fix it. A developer who isn't an accessibility expert is still stuck.
+Tools like Axe-core can detect accessibility problems, but they only tell you **what** is broken, not **how** to fix it. Developers who aren't accessibility experts are still left figuring out the solution themselves.
 
 ---
 
 ## The Solution
 
-Accessibility Analyser combines industry-standard scanning with AI to give developers:
+Accessibility Analyser combines industry-standard accessibility scanning with AI to provide developers with:
 
-- Every accessibility violation on their site
-- The exact broken code
-- The exact fixed code
-- A plain English explanation of where to find it
-- An AI chatbot to ask questions about each violation
-
+* Every accessibility violation on their website
+* The exact broken code
+* The exact fixed code
+* Plain-English explanations of where to find the issue
+* An AI chatbot for asking follow-up questions about violations
 
 ---
 
 ## Live Demo
 
-> 🔗 **[accessibility-analyser.vercel.app](https://accessibility-analyser.vercel.app)** 
+🔗 **[demo](https://ai-powered-accessibility-analyser.vercel.app/)**
 
 ---
 
 ## Features
 
-**Core Scanning**
-- Scans any public website URL for WCAG 2.1 violations
-- Uses Axe-core — the same engine powering Google Lighthouse
-- Headless Chrome via Puppeteer for accurate full-page scanning
-- Handles sites with 50+ violations via batch loading
+### Core Scanning
 
-**AI-Powered Fixes**
-- Groq AI (Llama 3.3 70B) generates exact code fixes for every violation
-- Shows BROKEN vs FIXED code side by side
-- Plain English "WHERE TO FIND IT" for each element
-- Contextual AI chatbot per violation — ask follow-up questions
+* Scans any public website URL for WCAG 2.1 accessibility violations
+* Uses Axe-core — the same accessibility engine powering Google Lighthouse
+* Headless Chrome via Puppeteer for accurate full-page scanning
+* Handles websites with 50+ violations through batch loading
 
-**Smart Reporting**
-- Accessibility score out of 100 (weighted by severity)
-- Violations categorised by Critical / Serious / Moderate / Minor
-- Load More — first 10 violations load instantly, more on demand
-- All reports saved to MongoDB for history
+### AI-Powered Fixes
 
-**Developer Experience**
-- 7-layer URL validation with human-readable error messages
-- Animated progress loader with percentage
-- Copy fix to clipboard in one click
-- Links to Deque University for deeper learning
+* Groq AI (Llama 3.3 70B) generates exact code fixes for every violation
+* Displays **BROKEN** vs **FIXED** code side by side
+* Provides plain-English "Where to Find It" guidance
+* Includes a contextual AI chatbot for each violation
+
+### Smart Reporting
+
+* Accessibility score out of 100 using weighted severity scoring
+* Violations categorized by Critical, Serious, Moderate, and Minor
+* Loads the first 10 violations instantly and fetches more on demand
+* Saves reports to MongoDB for future reference
+
+### Developer Experience
+
+* 7-layer URL validation with human-readable error messages
+* Animated progress loader with completion percentage
+* One-click copy-to-clipboard for generated fixes
+* Direct links to Deque University documentation
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | React.js + Vite |
-| Styling | Tailwind CSS + inline styles |
-| Backend | Node.js + Express |
-| Database | MongoDB Atlas |
-| Accessibility Scanner | Axe-core + Puppeteer |
-| AI Code Fixes | Groq API (Llama 3.3 70B) |
-| AI Chat | Groq API (Llama 3.3 70B) |
-| PDF Generation | jsPDF |
-| Deployment | Vercel (frontend) + Render (backend) |
+| Layer                 | Technology                            |
+| --------------------- | ------------------------------------- |
+| Frontend              | React.js + Vite                       |
+| Styling               | Tailwind CSS + Inline Styles          |
+| Backend               | Node.js + Express                     |
+| Database              | MongoDB Atlas                         |
+| Accessibility Scanner | Axe-core + Puppeteer                  |
+| AI Code Fixes         | Groq API (Llama 3.3 70B)              |
+| AI Chat               | Groq API (Llama 3.3 70B)              |
+| Deployment            | Vercel (Frontend) + Railway (Backend) |
 
 ---
 
 ## How It Works
 
-```
+```text
 User enters URL
       ↓
 Puppeteer opens headless Chrome and loads the page
       ↓
 Axe-core scans every element for WCAG violations
       ↓
-All violations saved to MongoDB
+All violations are saved to MongoDB
       ↓
-First 10 sent to Groq AI → generates code fixes + location
+First 10 violations sent to Groq AI
       ↓
-Frontend displays score, severity counts, violations with fixes
+AI generates code fixes and location guidance
+      ↓
+Frontend displays score, severity counts, and fixes
       ↓
 User can load more violations in batches of 10
       ↓
-User can chat with AI about any specific violation
-
+User can chat with AI about specific violations
 ```
 
 ---
@@ -107,146 +105,113 @@ User can chat with AI about any specific violation
 
 ### Prerequisites
 
-- Node.js v18+
-- MongoDB Atlas account (free)
-- Groq API key (free at console.groq.com)
+* Node.js v18+
+* MongoDB Atlas account
+* Groq API key
 
 ### Installation
 
-**1. Clone the repository**
+#### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/YOURUSERNAME/accessibility-analyser.git
+git clone https://github.com/JainSahaab123/AI-Powered-Accessibility-Analyser.git
 cd accessibility-analyser
 ```
 
-**2. Set up the backend**
+#### 2. Set Up the Backend
+
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file in the backend folder:
-```
-PORT=5000
+Create a `.env` file inside the backend directory:
+
+```env
+NODE_ENV=production
 MONGODB_URI=your_mongodb_connection_string
 GROQ_API_KEY=your_groq_api_key
 ```
 
-**3. Set up the frontend**
+#### 3. Set Up the Frontend
+
 ```bash
 cd ../frontend
 npm install
 ```
 
-**4. Run the project**
+#### 4. Run the Project
 
-Terminal 1 — Backend:
+Backend:
+
 ```bash
 cd backend
 node server.js
 ```
 
-Terminal 2 — Frontend:
+Frontend:
+
 ```bash
 cd frontend
 npm run dev
 ```
 
-Open `http://localhost:5173`
+Open:
+
+```text
+http://localhost:5173
+```
 
 ---
 
 ## Project Structure
 
-```
+```text
 accessibility-analyser/
 ├── backend/
-│   ├── server.js                    # Express server entry point
+│   ├── server.js
 │   ├── routes/
-│   │   └── analyse.js               # API routes
+│   │   └── analyse.js
 │   ├── controllers/
-│   │   └── analyseController.js     # Core business logic
+│   │   └── analyseController.js
 │   ├── services/
-│   │   ├── axeService.js            # Axe-core scanning logic
-│   │   └── aiService.js             # Groq AI integration
+│   │   ├── axeService.js
+│   │   └── aiService.js
 │   └── models/
-│       └── Report.js                # MongoDB schema
+│       └── Report.js
 │
 └── frontend/
     └── src/
-        ├── App.jsx                  # Root component + state
+        ├── App.jsx
         ├── components/
-        │   ├── URLInput.jsx         # URL input + scan trigger
-        │   ├── Report.jsx           # Full report display
-        │   ├── Violation.jsx        # Single violation card
-        │   └── CodeFix.jsx          # Broken/fixed code display
+        │   ├── URLInput.jsx
+        │   ├── Report.jsx
+        │   ├── Violation.jsx
+        │   └── CodeFix.jsx
 ```
-
----
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/analyse` | Scan a URL and return first 10 violations with AI fixes |
-| POST | `/api/analyse/more` | Load next batch of violations from saved report |
-| POST | `/api/analyse/explain` | Chat with AI about a specific violation |
-
----
-
-## Accessibility Score Formula
-
-```
-Start: 100 points
-
-Deductions per violation:
-  Critical  → -10 points
-  Serious   → -7 points
-  Moderate  → -4 points
-  Minor     → -1 point
-
-Final score = max(0, 100 - total deductions)
-```
-
-| Score | Label |
-|---|---|
-| 90-100 | Excellent |
-| 70-89 | Good |
-| 50-69 | Needs Work |
-| 30-49 | Poor |
-| 0-29 | Critical |
 
 ---
 
 ## Screenshots
 
-> Add screenshots here after deployment
+### Home Page
+
+Add screenshot here.
+
+### Scan Results
+
+Add screenshot here.
+
+### AI Fix Suggestions
+
+Add screenshot here.
 
 ---
 
 ## Known Limitations
 
-- Some websites (IRCTC, banking sites) block automated browsers — this is expected behaviour not a bug
-- Axe-core detects automatically measurable violations — issues requiring human judgement (e.g. quality of alt text) are not detected
-- Scan time increases with site complexity — large sites may take 30-60 seconds
+* Some websites (government, banking, and highly protected platforms) may block automated browsers. This is expected behavior and not a bug.
+* Axe-core detects automatically measurable accessibility violations. Issues requiring human judgment (such as the quality of alternative text) may not be detected.
+* Scan times increase with website complexity. Large websites may take 30–60 seconds to analyze, especially when deployed on free-tier hosting services.
 
 ---
-
-## What I Learned
-
-- Integrating Axe-core with Puppeteer for real-world accessibility scanning
-- Designing effective AI prompts to generate structured code fixes
-- Batch processing to handle rate limits while maintaining complete data
-- Building contextual AI chat that maintains violation-specific context
-- The real-world impact of accessibility on over 1.3 billion people globally
-
-
-
----
-
-## Author
-
-**Paras** — [GitHub](https://github.com/JainSahaab123) · [LinkedIn](www.linkedin.com/in/paras-jain312)
-
----
-
