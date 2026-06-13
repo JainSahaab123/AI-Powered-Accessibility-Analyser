@@ -214,5 +214,6 @@ Add screenshot here.
 * Axe-core detects automatically measurable accessibility violations. Issues requiring human judgment (such as the quality of alternative text) may not be detected.
 * Scan times increase with website complexity. Large websites may take 30–60 seconds to analyze, especially when deployed on free-tier hosting services.
 * Sometimes Geological restricted websites are scanned or vice-versa.
+* Performance may degrade during periods of high concurrent usage due to the resource constraints of the current free-tier deployment infrastructure.
 
 ---

@@ -18,9 +18,6 @@ function Report({ report }) {
   const [hasMore, setHasMore] = useState(
     (report.violations?.length || 0) < (report.totalViolations || 0)
   )
-  // const [ remaining ,setRemaining] = useState(
-  //   (report.totalViolations || 0) - (report.violations?.length || 0)
-  // )
 
   const scoreInfo = getScoreLabel(report.score || 0)
 
@@ -255,32 +252,6 @@ function Report({ report }) {
       {/* Violations List */}
       {violations.length > 0 && (
         <div>
-          {/* <div style={{
-            marginTop: '12px',
-            background: 'var(--bg3)',
-            border: '1px solid var(--border)',
-            borderRadius: '8px',
-            padding: '8px 12px',
-            display: 'inline-block'
-          }}>
-            <span style={{
-              fontFamily: 'Space Mono, monospace',
-              fontSize: '13px',
-              color: 'white',
-              fontWeight: '700'
-            }}>
-              {report.totalViolations}
-            </span>
-            <span style={{
-              fontFamily: 'Space Mono, monospace',
-              fontSize: '11px',
-              color: 'white',
-              marginLeft: '6px'
-            }}>
-              total violations
-            </span>
-          </div> */}
-
           <div style={{
             display: 'flex',
             flexDirection: 'column',
