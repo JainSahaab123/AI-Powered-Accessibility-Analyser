@@ -85,35 +85,24 @@ export const scanWebsite = async (url) => {
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     )
 
-    await page.goto(url, {
+    // Fix 1: capture response
+    const response = await page.goto(url, {
       waitUntil: 'domcontentloaded',
       timeout: 60000
     })
 
     console.log('✅ Page loaded')
 
+    // Fix 2: check 403 status
     if (response && response.status() === 403) {
       throw new Error('GEO_BLOCKED')
     }
 
-    // ---- ADD THIS BLOCK ----
     const pageTitle = await page.title()
     const pageContent = await page.evaluate(() => document.body?.innerText || '')
-    const pageUrl = page.url()
 
+    // Fix 3: only specific signals, no broad ones
     const geoBlockedSignals = [
-      'access denied',
-      'not available in your region',
-      'not available in your country',
-      'geo',
-      'blocked',
-      'restricted',
-      'unavailable in your location',
-      'service unavailable',
-      '403',
-      'forbidden',
-      'country not supported',
-      'region not supported',
       'not available in your region',
       'not available in your country',
       'not available in your location',

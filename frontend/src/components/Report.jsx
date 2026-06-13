@@ -18,9 +18,9 @@ function Report({ report }) {
   const [hasMore, setHasMore] = useState(
     (report.violations?.length || 0) < (report.totalViolations || 0)
   )
-  const [ setRemaining] = useState(
-    (report.totalViolations || 0) - (report.violations?.length || 0)
-  )
+  // const [ remaining ,setRemaining] = useState(
+  //   (report.totalViolations || 0) - (report.violations?.length || 0)
+  // )
 
   const scoreInfo = getScoreLabel(report.score || 0)
 
@@ -28,14 +28,14 @@ function Report({ report }) {
     try {
       setLoading(true)
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/analyse/more`,
+        `${import.meta.env.VITE_API_URL}api/analyse/more`,
         { reportId: report._id, offset }
       )
 
       setViolations(prev => [...prev, ...response.data.violations])
       setOffset(prev => prev + response.data.violations.length)
       setHasMore(response.data.hasMore)
-      setRemaining(response.data.remaining)
+      //setRemaining(response.data.remaining)
 
     } catch (error) {
       console.log('Load more failed:', error)
