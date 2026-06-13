@@ -90,7 +90,48 @@ export const scanWebsite = async (url) => {
       timeout: 60000
     })
 
-    console.log('Page loaded')
+    console.log('✅ Page loaded')
+
+    if (response && response.status() === 403) {
+      throw new Error('GEO_BLOCKED')
+    }
+
+    // ---- ADD THIS BLOCK ----
+    const pageTitle = await page.title()
+    const pageContent = await page.evaluate(() => document.body?.innerText || '')
+    const pageUrl = page.url()
+
+    const geoBlockedSignals = [
+      'access denied',
+      'not available in your region',
+      'not available in your country',
+      'geo',
+      'blocked',
+      'restricted',
+      'unavailable in your location',
+      'service unavailable',
+      '403',
+      'forbidden',
+      'country not supported',
+      'region not supported',
+      'not available in your region',
+      'not available in your country',
+      'not available in your location',
+      'unavailable in your location',
+      'country not supported',
+      'region not supported',
+      'this service is not available in your country',
+      'access is restricted in your country',
+      'not supported in your country',
+      'you are not allowed to access this page',
+    ]
+
+    const combinedText = (pageTitle + ' ' + pageContent).toLowerCase()
+    const isGeoBlocked = geoBlockedSignals.some(signal => combinedText.includes(signal))
+
+    if (isGeoBlocked) {
+      throw new Error('GEO_BLOCKED')
+    }
 
     await waitForPageToSettle(page)
     await scrollThroughPage(page)
@@ -99,6 +140,7 @@ export const scanWebsite = async (url) => {
     console.log('Loaded page title:', await page.title())
     console.log('Loaded page URL:', page.url())
 
+    //run axe
     await page.evaluate(axeSource)
     console.log('Axe injected')
 
@@ -140,7 +182,7 @@ export const scanWebsite = async (url) => {
       throw new Error('Website not found. Please check the URL and try again.')
     }
 
-    if (msg.includes('451')) {
+    if (msg.includes('GEO_BLOCKED')) {
       throw new Error('This website is not available in your region.')
     }
 

@@ -219,7 +219,7 @@ function URLInput({ setReport, setLoading, setError, setProgress, setProgressLab
         ].map(site => (
           <button
             key={site}
-            onClick={() => setUrl(site === 'My Site' ? 'ai-accessibility-analyser.vercel.app' : site)}
+            onClick={() => setUrl(site === 'My Site' ? 'ai-powered-accessibility-analyser.vercel.app' : site)}
             style={{
               background: 'transparent',
               border: '1px solid var(--border)',
